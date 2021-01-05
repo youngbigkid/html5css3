@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>css 선택자1</title>
+    <style>
+    * { margin:0; padding:0; } /* 전체 선택자 */
+    nav { border-top:2px solid deeppink;
+        background-color:green; } /* 태그 선택자 */
+    a { text-decoration: none; }    
+    nav, a, .tit { color:#333; } /* 복수 선택자 */   
+    .tit { font-size:20px; text-align:center; } /* 클래스 선택자 */
+    #gnb { background-color:deeppink; } /* 아이디 선택자 */   
+    .menu { background-color:deepskyblue; }    
+    nav { color:yellow; }
+    
+    #gnb a { } /* 조상 후손 선택자 */
+    #gnb>ul>li>a { }    /* 부모>자식 선택자  */
+    #gnb li:first-child a { color:yellow; } /* 첫 번째 요소 */
+    #gnb li:nth-child(2) a { color:yellow; }  /* 특정 번째 요소 */
+    #gnb li:nth-child(2n) a { background-color:#333; }   
+    #gnb li:last-child a { color:violet; } /* 마지막 요소 */
+    #gnb li a:only-child { } /* 단독 요소 */   
+    #gnb li:first-of-type a { }
+    #gnb li:last-of-type a { }    
+    #gnb li:nth-of-type(2) a { }        
+    #gnb li a:only-of-type { }  
+    #gnb + nav { }    /* 바로 다음 요소(단수) */
+    #gnb ~ nav { }    /* 다음 요소들(복수)  */
+    #gnb li:empty { }  /* 자식이나 콘텐츠가 없는 요소 */ 
+       
+    img[src] { }    /* 특정 속성이 있는 */
+    img[src="1234.png"] { } /* 속성이 특정값과 일치하는 */
+    img[src^="main"] { } /* 속성의 특정 문자열로 시작하는 */
+    img[src|="main"] { } /* 속성의 특정 문자열로 시작하는 */
+    img[src$="jpg"] { }  /* 속성의 특정 문자열로 끝나는 */
+    img[src*="12"] { }   /* 속성의 특정 문자열이 포함  */
+    img[src~="12"] { }   /* 속성의 특정 문자열이 포함  */
+/*
+    1. 기본 선택자
+    * : 전체 선택자
+    태그 : 태그 선택자
+    #아이디 : 아이디 선택자
+    .클래스 : 클래스 선택자
+    선택자1, 선택자2 : 복수 선택자
+*/
+/*
+    2. 계층 구조 선택자
+    부모>자식 : 특정 부모요소의 자식요소를 선택
+    조상 후손 : 특정 요소 안의 내부요소를 선택
+    태그명:first-child : 첫 번째 요소를 선택
+    태그명:last-child : 마지막 요소를 선택
+    태그명:nth-child(순번) : 특정 번째 요소를 선택
+    태그명:only-child : 단독 요소를 선택   
+    태그명:first-of-type : 첫 번째 요소를 선택
+    태그명:last-of-type : 마지막 요소를 선택
+    태그명:nth-of-type(순번) : 특정 번째 요소를 선택
+    태그명:only-of-type : 단독 요소를 선택
+    태그명::first-letter : 첫 글자만 선택
+    태그명::first-line : 첫 줄만 선택 
+    선택자1 + 선택자2 : 선택자1의 바로 다음 요소 선택자2를 선택
+    선택자1 ~ 선택자2 : 선택자1의 다음 요소들 중 선택자2를 선택
+    선택자:empty : 자식요소나 텍스트 등 콘텐츠가 없는 요소 선택
+*/
+/*
+    3. 속성 선택자
+    태그[속성명] : 특정 속성이 있는 요소를 선택 
+    태그[속성명="값"] : 특정 속성이 값과 일치하는 요소를 선택
+    태그[속성명^="값"] : 특정 속성이 값으로 시작하는 요소를 선택
+    태그[속성명$="값"] : 특정 속성이 값으로 끝나는 요소를 선택
+    태그[속성명*="값"] : 특정 속성에 지정한 값이 포함된 요소를 선택
+*/
+
+/*
+    4. 링크 선택자나 상태 선택자 및 목적 선택자
+    a:link : a요소에 href속성이 있는 요소
+    a:visited : a요소에 있는 href의 값으로 방문했던 적인 요소를 선택
+    요소:hover : 특정 요소에 마우스 포인터가 올라간 경우 선택
+    요소:active : 특정 요소에 마우스 포인터를 올리고 클릭하고 있는 경우 
+    
+    input:disabled : 사용이 불가능한 요소인 것을 선택
+    input:enabled : 사용이 가능한 요소인 것을 선택
+    input:focus : 현재 커서가 위치한 요소를 선택
+    input:checked : 체크박스/라디오 버튼이 체크된 것만 선택
+    input:not(:checked) : 체크박스/라디오 버튼이 체크 안된 것만 선택    
+    
+    선택자:target : a요소에 의해서 선택자가 타겟이 되면    
+*/
+
+        
+    .page { display:none; }    
+    .page:target { display:block; }    
+/*    적용되는 선택자의 우선 순위
+    - 아이디>클래스>태그
+    - !important 절대 사용하지 않기
+    - 같은 선택자와 같은 속성을 여러 번 기재 할 경우는 맨 마지막 내용이 적용됨
+    - 아이디는 금메달, 클래스는 은메달, 태그는 동메달 -> 요소의 구성에 점수를 부여하여 우선 순위를 반영 */   
+        
+    </style>
+</head>
+<body>
+   
+    <nav id="gnb" class="menu">
+        <input type="text" disabled palceholder="입력1"> <br>
+        <input type="text" autofocus palceholder="입력2">
+        <br>
+        <input type="text" palceholder="입력3"> <br>
+        여기는 메인메뉴<br>
+        <ul>
+            <li class="dp1 m1">
+                <a href="#page1">페이지1</a>
+                <a href="#page2">페이지2</a>
+            </li>
+            <li class="dp1 m2">
+                <a href="#page3">페이지3</a>
+            </li>
+            <li class="dp1 m3">
+                <a href="#page4">페이지4</a>
+                <a href="">메뉴32</a>
+                <span>여기는 메뉴그룹 구분자</span>
+                <a href="">메뉴33</a>
+                <a>링크 없음</a>
+            </li>
+            <li class="dp1 m4">
+                <a href="">메뉴4</a>
+            </li>
+            <li class="dp1 m5"></li>
+        </ul>
+    </nav>
+    <section class="page" id="page1">
+        <h2 class="page_tit">페이지1</h2>
+    </section>
+    <section class="page" id="page2">
+        <h2 class="page_tit">페이지2</h2>
+    </section>
+    <section class="page" id="page3">
+        <h2 class="page_tit">페이지3</h2>
+    </section>
+    <section class="page" id="page4">
+        <h2 class="page_tit">페이지4</h2>
+    </section>
+    <div id="content">
+        <h2 class="tit">페이지 제목</h2>
+        <ul>
+            <li><a href=""><img src="https://placehold.it/280x360/333" alt=""></a></li>
+            <li><a href=""><img src="https://placehold.it/280x360/333" alt=""></a></li>
+            <li><a href=""><img src="https://placehold.it/280x360/333" alt=""></a></li>
+            <li><a href=""><img src="https://placehold.it/280x360/333" alt=""></a></li>
+        </ul>
+        <img src="img01.jpg" alt="">
+        <img src="abcdef.png" alt="">
+        <img src="pic012.gif" alt="">
+        <img src="main/img02.png" alt="">
+        <img src="main/pic001.jpg" alt="">
+        <img src="sub/abcd001.gif" alt="">
+        <img src="sub/bnf1234.hwp" alt="">
+        <img src="mainghij.pdf" alt="">
+        <img src="" alt="">
+        <img alt="">
+    </div>
+    <nav id="fnb" class="menu">
+        <ul>
+            <li class="item1"><a href="">하단링크1</a></li>
+            <li class="item2"><a href="">하단링크2</a></li>
+            <li class="item3"><a href="">하단링크3</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

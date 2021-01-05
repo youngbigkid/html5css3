@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 속성2 - width, height, margin, padding, border, box-sizing, overflow, display, visibility, opacity</title>
+    <style>
+    * { margin: 0; padding: 0; }
+    body, html { width: 100%; }    
+    ul { list-style: none; }    
+    a { text-decoration: none;}
+    .page_tit { clear:both; width: 960px; margin: 0 auto;}
+    .lst1 { clear:both; width:912px; margin:0px auto; }
+    .lst1 li { float:left; width: 240px; height: 200px; text-align: center; border:2px solid #333; padding: 10px; margin:20px; }    
+    .lst2 { clear:both;  width: 840px; margin:0px auto; }
+    .lst2 li { float:left; width: 240px; height: 200px; text-align: center; border:2px solid #333; padding:10px; margin: 20px; box-sizing:border-box; } 
+    .comment { clear:both; }
+    div[class^=box] { width: 200px; height: 200px; margin:200px; }
+    .box1, .box2 { overflow:auto; }
+    .box3, .box4 { overflow:scroll; }
+    .box5, .box6 { overflow:hidden; }
+    
+    .in a { display:block; float:left; width:200px; height: 200px; border:2px dotted green; margin:20px; background-color:deeppink; }
+    .in a:nth-child(2) { visibility:hidden; }
+    .in a:nth-child(3) { opacity:0; }    
+    .in a:nth-child(4) { clear:both; display:none; }
+    
+    .bl { clear: both;  }    
+    .bl div { display:inline; border:1px solid deeppink; width:100px height:100px; margin: 30px; padding:60px; }
+    </style>
+</head>
+<body>
+    <h2 class="tit">박스 관련 및 가시 속성</h2>
+    <div class="wrap">
+        <h3 class="page_tit">박스 관련 - w+p+b+m, h+p+b+m</h3>
+        <ul class="lst1">
+            <li class="box1">박스1</li>
+            <li class="box2">박스2</li>
+            <li class="box3">박스3</li>
+            <li class="box4">박스4</li>
+            <li class="box5">박스5</li>
+            <li class="box6">박스6</li>
+            <li class="box7">박스7</li>
+            <li class="box8">박스8</li>
+        </ul>
+        <hr>
+        <h3 class="page_tit">박스 관련 - w+m, h+m, padding과 border를 지정한 크기에 포함 --> box-sizing:border-box</h3>
+        <ul class="lst2">
+            <li class="box1">박스1</li>
+            <li class="box2">박스2</li>
+            <li class="box3">박스3</li>
+            <li class="box4">박스4</li>
+            <li class="box5">박스5</li>
+            <li class="box6">박스6</li>
+            <li class="box7">박스7</li>
+            <li class="box8">박스8</li>
+        </ul>
+        <p class="comment">
+            width:너비, px/%/vw/vh/vmax/vmin/auto <br>
+            height:높이, px/%/vw/vh/vmax/vmin/auto
+            <br>
+            ※ 인라인 요소는 미디어만 제외하고 크기지정 불가<br>
+        </p>
+        <hr>
+        <p class="comment">    
+            margin:바깥여백, <br>
+            margin:값1 -> 상하좌우의 여백을 한번에 <br>
+            margin:값1 값2 -> 상/하 좌/우 <br>
+            margin:값1 값2 값3 -> 상 좌/우 하 <br>
+            margin:값1 값2 값3 값4 -> 상 우 하 좌 <br>
+            margin-top: 위 바깥여백만 <br>
+            margin-bottom: 아래 바깥여백만 <br>
+            margin-left: 좌 바깥여백만 <br>
+            margin-right: 우 바깥여백만 <br>
+            인라인 요소는 상/하 여백 적용되지 않음 <br>
+        </p>
+        <hr>
+        <p class="comment">
+            padding: 안 여백, <br>
+            padding:값1 -> 상하좌우의 여백을 한번에<br>
+            padding:값1 값2 -> 상/하 좌/우 <br>
+            padding:값1 값2 값3 -> 상 좌/우 하 <br>
+            padding:값1 값2 값3 값4 -> 상 우 하 좌 <br>
+            padding-top: 위 안쪽여백만 <br>
+            padding-bottom: 아래 안쪽여백만 <br>
+            padding-left: 좌 안쪽여백만 <br>
+            padding-right: 우 안쪽여백만 <br>
+            인라인 요소는 상/하 여백 적용되지 않음 <br>
+        </p>
+        <p class="comment">
+            box-sizing:지정한 콘텐츠의 width와 height을 어디까지를 계산할지 방법 제공<br>
+            content-box:기본값으로 width, height, padding, border, margin을 각 각 계산<br>
+            border-box:지정한 width, height에 padding과 border를 포함하여 계산
+        </p>
+    </div>
+    <div class="wrap">
+        <h3 class="page_tit">가시 속성</h3>
+        <p class="coment">overflow, overflow-x(가로), overflow-y(세로) : 흘러 넘치는 영역을 어떻게 처리할 지 설정 -> visible, auto, scroll, hidden</p>
+        <div class="box1"><img src="http://placehold.it/180x180/333" alt=""></div>
+        <div class="box2"><img src="http://placehold.it/400x300/333" alt=""></div>
+        <div class="box3"><img src="http://placehold.it/180x180/333" alt=""></div>
+        <div class="box4"><img src="http://placehold.it/400x300/333" alt=""></div>
+        <div class="box5"><img src="http://placehold.it/180x180/333" alt=""></div>
+        <div class="box6"><img src="http://placehold.it/400x300/333" alt=""></div>
+    </div>
+    <div class="wrap">
+        <p class="comment">display:출력(화면에표시하는)방식 -> none, block, inline, inline-block, table </p>
+        <p class="comment">visibility:가시 -> visible, hidden</p>
+        <p class="comment">opacity:불투명도, 0(투명)~1(불투명) ex) opacity:0.5(반투명)</p>
+        <div class="in">
+            <a>스팬1</a>
+            <a>스팬2</a>
+            <a>스팬3</a>
+            <a>스팬4</a>
+            <a>스팬5</a>
+        </div>
+        <br><br>
+        <div class="bl">
+            <div>블록</div>
+            <div>블록</div>
+            <div>블록</div>
+            <div>블록</div>
+            <div>블록</div>
+        </div>
+    </div>
+    <p class="comment"></p>
+</body>
+</html>
